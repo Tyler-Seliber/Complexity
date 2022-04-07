@@ -50,11 +50,13 @@ The repository contains a stub that parses a javascript file and visits each fun
 2. Do a simple calculation (2 Points Each) 
 
    a) **ParameterCount**: The number of parameters for functions (FunctionBuilder)
+
    b) **String Usage**: How many string literals are used in file? (FileBuilder)
 
 3. Using multiple visitors (2 Points Each) 
 
    a) **SimpleCyclomaticComplexity**: The number of if statements/loops + 1.
+   
    b) **MaxConditions**: The max number of condition predicates (expressions seperated by `||`, `&&`) in an if statement.
 
 4. (SKIP THIS) Check build status on Travis-CI when committing each new function. Submit a screenshot of the final build. (2 Points) 
