@@ -160,6 +160,22 @@ function childrenLength(node) {
 	return count;
 }
 
+//Helper function for returning the value of the String data field of the FileBuilder instance.
+function getStrings(filePath) {
+	var buf = fs.readFileSync(filePath, "utf8");
+	var ast = esprima.parse(buf, options);
+
+	// A file level-builder:
+	var fileBuilder = new FileBuilder();
+	fileBuilder.FileName = filePath;
+	fileBuilder.ImportCount = 0;
+	builders[filePath] = fileBuilder;
+	traverseWithParents(ast, function (node) {
+		if (node.type === 'Literal')
+			fileBuilder.Strings++;
+	});
+	return fileBuilder.Strings;
+}
 
 // Helper function for checking if a node is a "decision type node"
 function isDecision(node) {
@@ -272,3 +288,4 @@ function Crazy(argument) {
 	}
 }
 exports.complexity = complexity;
+exports.getStrings = getStrings;
